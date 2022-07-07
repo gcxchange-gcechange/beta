@@ -1,7 +1,8 @@
 ﻿using Azure.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Graph;
+using Microsoft.Graph.Beta;
+using Microsoft.Graph.Core;
 using Microsoft.Identity.Client;
 using System;
 using System.Net.Http.Headers;
@@ -40,10 +41,9 @@ namespace beta
 
             //KeyVaultSecret secret = client.GetSecret(keyname);
 
-            //value for local testing only
-            var secret = "";
-            var tenantid = "";
-            var cliendID = "";
+            var secret = "Bq.8Q~3Gz3KcZWpxFfh.u6a-y.6buytiX7Pc0bS-";
+            var tenantid = "28d8f6f0-3824-448a-9247-b88592acc8b7";
+            var cliendID = "4bb150ca-b985-4d26-b306-ffde3119c570";
 
             IConfidentialClientApplication confidentialClientApplication = ConfidentialClientApplicationBuilder
             .Create(cliendID)
@@ -54,7 +54,7 @@ namespace beta
             // Build the Microsoft Graph client. As the authentication provider, set an async lambda
             // which uses the MSAL client to obtain an app-only access token to Microsoft Graph,
             // and inserts this access token in the Authorization header of each API request. 
-            GraphServiceClient graphServiceClient =
+           GraphServiceClient graphServiceClient =
                 new GraphServiceClient(new DelegateAuthenticationProvider(async (requestMessage) => {
 
                     // Retrieve an access token for Microsoft Graph (gets a fresh token if needed).
